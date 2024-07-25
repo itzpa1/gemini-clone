@@ -6,16 +6,59 @@
 
 /* Custom CSS */
 
+:root{
+    --background: #ffffff;
+    --text-color: #5f6368;
+    --icon-filter: none;
+    --card-bg: #f0f4f9;
+    --card-img: #ffffff;
+    --hover: #e6eaf1;
+    --greet-p: #c4c7c5;
+}
+
+.dark{
+    --background: #131314;
+    --text-color: #ffffff;
+    --icon-filter: invert();
+    --card-bg: #1E1F20;
+    --card-img: #000000;
+    --hover: #333537;
+    --greet-p: #444746;
+}
+
+::selection{
+    color: var(--text-color);
+}
+
+
+
 #root{
+    display: flex;
+    background: var(--background);
     animation: fadeIn 1.5s;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar{
+    background: var(--card-bg);
+}
+
+.sidebar .new-chat{
+    background: var(--hover);
+}
+
+.sidebar .new-chat img{
+    filter: var(--icon-filter);
 }
 
 .sidebar .recent{
+    color: var(--text-color);
     animation: fadeIn 1.5s;
 }
 
 .sidebar img{
     width: 20px;
+    filter: var(--icon-filter);
 }
 
 .sidebar .recent-entry{
@@ -25,12 +68,12 @@
     padding: 10px;
     padding-right: 40px;
     border-radius: 50px;
-    color: #282828;
+    color: var(--text-color);
     cursor: pointer;
 }
 
 .sidebar .recent-entry:hover{
-    background: #e2e6eb;
+    background: var(--hover);
 }
 
 .sidebar .bottom-item{
@@ -38,9 +81,17 @@
     cursor: pointer;
 }
 
+.main .nav p{
+    color: var(--text-color);
+}
+
 .main .nav img{
     width: 40px;
     border-radius: 50%;
+}
+
+.main .greet p{
+    color: var(--greet-p);
 }
 
 .main .greet span{
@@ -59,7 +110,7 @@
 .main .card{
     height: 200px;
     padding: 15px;
-    background: #f0f4f9;
+    background: var(--card-bg);
     border-radius: 10px;
     position: relative;
     cursor: pointer;
@@ -69,24 +120,38 @@
     width: 35px;
     padding: 5px;
     position: absolute;
-    background: #fff;
+    background: #ffffff;
+    filter: var(--icon-filter);
     border-radius: 20px;
     bottom: 10px;
     right: 10px;
 }
 
 .main .card p{
-    color: #585858;
+    color: var(--text-color);
     font-size: 17px;
 }
 
 .main .card:hover{
-    background-color: #dfe4ea;
+    background-color: var(--hover);
+}
+
+.search-box{
+    background: var(--card-bg);
 }
 
 .search-box img{
     width: 24px;
+    filter: var(--icon-filter);
     cursor: pointer;
+}
+
+.search-box input{
+    color: var(--text-color);
+}
+
+.bottom-info{
+    color: var(--text-color);
 }
 
 .result::-webkit-scrollbar{
@@ -96,6 +161,10 @@
 .result img{
     width: 40px;
     border-radius: 50%;
+}
+
+.result .result-title p{
+    color: var(--text-color);
 }
 
 .loader{
@@ -117,8 +186,8 @@
 
 .result-data p{
     font-size: 17px;
-    font-weight: 300;
     line-height: 1.8;
+    color: var(--text-color);
 }
 
 @keyframes loader{
