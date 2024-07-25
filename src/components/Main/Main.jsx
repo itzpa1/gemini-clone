@@ -1,17 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
+import { MdOutlineDarkMode,MdOutlineLightMode } from "react-icons/md";
 
 const Main = () => {
 
-    const { onSent, recentPrompt, showResult, loading, resultData,setInput,input } = useContext(Context)
-    
+    const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context)
+    const [isDark, setIsDark] = useState('dark');
+
+
+    const changeTheme = ()=> {
+        if(isDark === "dark"){
+            setIsDark('light')
+        } 
+        else {
+            setIsDark('dark')
+        } 
+    }
+
+    useEffect(() =>{
+        document.querySelector("#root").className=isDark;
+    },[isDark])
 
     return (
         <div className='main flex-1 min-h-[100vh] relative pb-[15vh] '>
-            <div className="nav flex items-center justify-between text-[22px] p-[20px]  ">
+            <div className="nav flex items-center justify-between text-[22px] p-[20px] ">
                 <p className='cursor-pointer'>Gemini</p>
-                <img src={assets.user_icon} title='User' alt="" />
+                <div className="user flex items-center gap-5">
+                    <button className='bg-zinc-500/25 flex justify-center items-center w-10 h-10 rounded-full' onClick={changeTheme}>
+                        {isDark === 'dark'
+                            ? <MdOutlineLightMode size="20px" />
+                            : <MdOutlineDarkMode size="20px" />}
+                    </button>
+                    <img src={assets.user_icon} title='User' alt="" />
+                </div>
             </div>
             <div className="main-container max-w-[900px] m-auto ">
 
@@ -20,7 +42,7 @@ const Main = () => {
 
                         <div className="greet mx-0 my-[50px] text-[56px] font-medium p-[20px] ">
                             <p><span>Hello, Pawan.</span></p>
-                            <p>How can I heelp you today?</p>
+                            <p>How can I help you today?</p>
                         </div>
                         <div className="cards">
                             <div className="card">
@@ -42,7 +64,7 @@ const Main = () => {
                         </div>
 
                     </>
-                    :<div className='result py-0 px-[5%] max-h-[70vh] overflow-y-scroll '>
+                    : <div className='result py-0 px-[5%] max-h-[70vh] overflow-y-scroll '>
                         <div className="result-title my-[40px] mx-0 flex items-center gap-5 ">
                             <img src={assets.user_icon} alt="" />
                             <p>{recentPrompt}</p>
@@ -50,13 +72,13 @@ const Main = () => {
                         <div className="result-data flex items-start gap-5">
                             <img src={assets.gemini_icon} alt="" />
                             {loading
-                            ?<div className='loader'>
-                                <hr />
-                                <hr />
-                                <hr />
-                            </div>
-                            :
-                            <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+                                ? <div className='loader'>
+                                    <hr />
+                                    <hr />
+                                    <hr />
+                                </div>
+                                :
+                                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
                             }
                         </div>
                     </div>
@@ -69,7 +91,7 @@ const Main = () => {
                         <div className='flex items-center gap-[15px]  '>
                             <img src={assets.gallery_icon} title='Choose files' alt="" />
                             <img src={assets.mic_icon} title='Mic' alt="" />
-                            {input?<img onClick={() => onSent()} src={assets.send_icon} title='Send' alt="" />:null}
+                            {input ? <img onClick={() => onSent()} src={assets.send_icon} title='Send' alt="" /> : null}
                         </div>
                     </div>
                     <p className="bottom-info text-[13px] mx-auto my-[15px] font-light text-center ">

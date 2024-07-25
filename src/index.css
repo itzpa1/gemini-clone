@@ -51,7 +51,7 @@
     filter: var(--icon-filter);
 }
 
-.sidebar .recent{
+.recent{
     color: var(--text-color);
     animation: fadeIn 1.5s;
 }
@@ -81,8 +81,12 @@
     cursor: pointer;
 }
 
-.main .nav p{
+.main .nav{
     color: var(--text-color);
+}
+
+.main .user button{
+    display: none;
 }
 
 .main .nav img{
@@ -90,14 +94,14 @@
     border-radius: 50%;
 }
 
-.main .greet p{
-    color: var(--greet-p);
-}
-
 .main .greet span{
     background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.main .greet p{
+    color: var(--greet-p);
 }
 
 .main .cards{
@@ -224,5 +228,32 @@
     }
     .search-box div{
         gap: 5px;
+    }
+    .search-box input{
+        font-size: 14px;
+    }
+    .main .greet{
+        margin-bottom: 0;
+    }
+    .main .greet p{
+        font-size: 30px;
+    }
+    .main{
+        overflow: hidden;
+    }
+    .main .user button{
+        display: flex;
+    }
+    .main .cards{
+        display: flex;
+        overflow-x: scroll;
+    }
+    .cards::-webkit-scrollbar{
+        display: none;
+    }
+    .main .card{
+        /* display: none; */
+        width: 200px;
+        flex-shrink: 0;
     }
 }
